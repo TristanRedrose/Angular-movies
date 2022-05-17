@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+}
+
+body {
+    background-color: #0e1538;
+}
+
+.container {
+    position: relative;
+    margin: 30px auto;
+    padding: 48px;
+    max-width: 90%;
+    max-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px black solid;
+    border-radius: 8px;
+    background-color: lightgray;
+    background-image: url(https://image.shutterstock.com/image-photo/popcorn-cardboard-box-isolated-on-260nw-1276790326.jpg);
+}
+
+.container::before {
+    content: "";
+    height: 139px;
+    width: 100%;
+    opacity: 0.3;
+    position: absolute;
+    left: 0px;
+    background-color: black;
+    background-size: cover;
+    z-index: 1;
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 6px;
+    border: 1px navy solid;
+    color: white;
+    box-shadow: 0px 2px 4px black;
+    z-index: 2;
+    cursor: pointer;
+}
+
+header {
+    font-size: 32px;
+    color: white;
+    font-weight: 600;
+    z-index: 2;
+}
