@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
@@ -6,13 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+  display: boolean = false;
+  sideIsOpen:string = "closed";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  toggleSideBar() {
-    console.log('sidebar')
+  changeDisplay() {
+    if (this.sideIsOpen === "closed") {
+      this.display = true;
+      this.sideIsOpen= "open";
+      console.log(this.sideIsOpen);
+    }
+    else if (this.sideIsOpen === "open") {
+      this.display = false;
+      this.sideIsOpen= "closed";
+      console.log(this.sideIsOpen);
+    }
   }
 }

@@ -1,11 +1,12 @@
 <div class="container">
-<header>
-    <p>{{ title }}</p>
-</header>
+    <header>
+        <p>{{ title }}</p>
+    </header>
     <app-button 
         color="blue" 
         text="Open" 
         [ngStyle]="{ 'z-index': 2 }"
-        (click)="onClick()"
+        (btnClick)="toggleSidebar()"
     ></app-button>
 </div>
+
