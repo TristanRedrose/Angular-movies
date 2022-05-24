@@ -36,15 +36,7 @@ body {
     z-index: 1;
 }
 
-.btn {
-    border-radius: 8px;
-    padding: 6px;
-    border: 1px navy solid;
-    color: white;
-    box-shadow: 0px 2px 4px black;
-    z-index: 2;
-    cursor: pointer;
-}
+
 
 header {
     font-size: 32px;

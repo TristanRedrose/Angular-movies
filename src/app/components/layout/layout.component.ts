@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +10,7 @@ export class LayoutComponent implements OnInit {
   display: boolean = false;
   sideIsOpen:string = "closed";
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -25,5 +26,9 @@ export class LayoutComponent implements OnInit {
       this.sideIsOpen= "closed";
       console.log(this.sideIsOpen);
     }
+  }
+
+  hasRoute(route: string) {
+    return this.router.url === route;
   }
 }

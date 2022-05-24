@@ -1,0 +1,15 @@
+.link-box {
+    margin-bottom: 8px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 600;
+    color: navy;
+}
+
+.menu-text {
+    margin-bottom: 24px;
+    color: black;
+    font-weight: 600;
+}

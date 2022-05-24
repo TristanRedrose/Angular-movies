@@ -1,3 +1,9 @@
 <p-sidebar [(visible)]="display" position="right" (onHide)="changeSidebar()">
-    Content
+    <p class="menu-text">Select page:</p>
+    <div *ngIf="hasRoute('/movies')" >
+        <a routerLink="/movies">Movies</a>
+    </div>
+    <div *ngIf="hasRoute('/')" class="link-box">
+        <a routerLink="/">Go back</a>
+    </div>
 </p-sidebar>

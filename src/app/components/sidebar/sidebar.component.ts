@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,7 @@ export class SidebarComponent implements OnInit {
   @Input() display: boolean;
   @Output() sideCloseEvent = new EventEmitter();
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -18,5 +19,9 @@ export class SidebarComponent implements OnInit {
     if (this.display === true) {
       this.sideCloseEvent.emit();
     }
+  }
+
+  hasRoute(route: string) {
+    return this.router.url !== route;
   }
 }

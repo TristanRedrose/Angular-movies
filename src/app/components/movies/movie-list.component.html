@@ -1,0 +1,23 @@
+<div class="movies-container">
+    <div class="page-name">
+        <h1>Movies</h1>
+    </div>
+    <div class="movie-container" *ngFor="let movie of movies">
+        <div class="image-box">
+            <img class="movie-image" src="{{ movie.image }}">
+        </div>
+        <div class="content-box">
+            <div>
+                <h1>{{ movie.name }}</h1>
+                <h5>{{ movie.year }}</h5>
+            </div>
+            <div>
+                <h3>Director: <span>{{ movie.director }}</span></h3>
+                <h3>Starring: <span>{{ movie.actors }}</span></h3>
+            </div> 
+        </div>
+        <div class="button-box">
+            <app-button color="green" text="Details"></app-button>
+        </div>
+    </div>
+</div>
