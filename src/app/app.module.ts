@@ -11,12 +11,15 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieListComponent } from './components/movies/movie-list.component';
 import { MovieComponent } from './components/movies/movie.component';
 
+
 const appRoutes: Routes = [
-  { path: 'movies', component: MovieListComponent }
+  { path: 'movies', component: MovieListComponent},
+  { path: "movies/:movie_id", component: MovieComponent}, 
 ]
 
 
@@ -37,7 +40,8 @@ const appRoutes: Routes = [
     ButtonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,16 @@
-<h1>Hello world</h1>
+<h1 *ngIf="isLoaded">{{ movie.title }}</h1>
+<div *ngIf="isLoaded" class="details-div">
+    <div class="image-div">
+        <img class="details-image" src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}">
+    </div>
+    <div class="content-div">
+        <p>"{{ movie.overview }}"</p>
+        <h3>Release date: {{ movie.release_date }}</h3>
+        <h3>Companies:<span *ngFor="let company of movie.production_companies">{{ company.name }} - {{ company.origin_country }}</span></h3>
+        <h3>Language: {{ movie.original_language }}</h3>
+        <h3>Rating {{ movie.vote_average }}</h3>
+        <h3>Genre: <span *ngFor="let genre of movie.genres">{{ genre.name }}</span></h3>
+        <h3>Budget: {{ movie.budget }}$</h3>
+        <h3>Revenue: {{ movie.revenue }}$</h3>
+    </div>
+</div>

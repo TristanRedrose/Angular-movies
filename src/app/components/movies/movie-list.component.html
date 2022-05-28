@@ -4,20 +4,36 @@
     </div>
     <div class="movie-container" *ngFor="let movie of movies">
         <div class="image-box">
-            <img class="movie-image" src="{{ movie.image }}">
+            <img class="movie-image" src="https://image.tmdb.org/t/p/original/{{ movie.backdrop_path }}">
         </div>
         <div class="content-box">
             <div>
-                <h1>{{ movie.name }}</h1>
-                <h5>{{ movie.year }}</h5>
+                <h1>{{ movie.title }}</h1>
+                <h5>{{ movie.release_date }}</h5>
             </div>
             <div>
-                <h3>Director: <span>{{ movie.director }}</span></h3>
-                <h3>Starring: <span>{{ movie.actors }}</span></h3>
+                <h3>Language: <span>{{ movie.original_language }}</span></h3>
+                <h3>Rating: <span>{{ movie.vote_average }}</span></h3>
             </div> 
         </div>
         <div class="button-box">
-            <app-button color="green" text="Details"></app-button>
+            <a routerLink="/movies/{{ movie.id }}">
+                <app-button color="green" text="Details"></app-button>
+            </a>
         </div>
+    </div>
+    <div>
+        <h3 class="pagination">Page {{ page }} of {{ total_pages }}</h3>
+        <div class="form-div">
+            <form (ngSubmit)="getMovies(inputPage)">
+                <label for="page">Go to page:</label>
+                <input type="number" name="pageNum" id="page" placeholder="page-number" min="1" max="{{total_pages}}" [(ngModel)]="inputPage">
+                <app-button type="submit" color="red" text="Go"></app-button>
+            </form>
+        </div>
+    </div>
+    <div class="select-box">
+        <app-button *ngIf="showButton(1)" color=blue text="<< Previous" (btnClick)="getMovies(page - 1)"></app-button>
+        <app-button *ngIf="showButton(total_pages)" color=blue text="Next >>" (btnClick)="getMovies(page + 1)"></app-button>
     </div>
 </div>

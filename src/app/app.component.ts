@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MoviesService } from './services/movies/movies.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +6,6 @@ import { MoviesService } from './services/movies/movies.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private movies: MoviesService) {
-    this.movies.getData().subscribe(data => {
-      console.warn(data)
-    })
-  }
+  constructor() {}
+  
 }
