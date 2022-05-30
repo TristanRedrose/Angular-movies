@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { MoviesService } from "../../services/movies/movies.service";
 import { Movie } from "../../models/movie.types";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector: "app-movie",
@@ -15,13 +16,13 @@ export class MovieComponent {
     movie: Movie;
     isLoaded: boolean = false;
 
-    constructor(private router: Router, private service: MoviesService) {
+    constructor(private router: Router, private service: MoviesService, private title: Title) {
         this.pathUrl = router.url
         this.movieId = +(this.pathUrl.substr(this.pathUrl.length - (this.pathUrl.length - 8)))
     }
 
     ngOnInit(): void {
-        this.getMovie(this.movieId)
+        this.getMovie(this.movieId);
       }
 
     getMovie(id: number) {
@@ -29,6 +30,7 @@ export class MovieComponent {
             this.movie = res;
             console.log(res);
             this.isLoaded = true;
+            this.title.setTitle(this.movie.title)
         })
     }
 };

@@ -6,10 +6,28 @@
     <div class="content-div">
         <p>"{{ movie.overview }}"</p>
         <h3>Release date: {{ movie.release_date }}</h3>
-        <h3>Companies:<span *ngFor="let company of movie.production_companies">{{ company.name }} - {{ company.origin_country }}</span></h3>
+        <h3>Production:
+            <span *ngFor="let company of movie.production_companies, let last = last">
+                <span *ngIf="!last">
+                    "{{ company.name }}" - {{ company.origin_country }},
+                </span>
+                <span *ngIf="last">
+                    "{{ company.name }}" - {{ company.origin_country }}
+                </span>
+            </span>
+        </h3>
         <h3>Language: {{ movie.original_language }}</h3>
         <h3>Rating {{ movie.vote_average }}</h3>
-        <h3>Genre: <span *ngFor="let genre of movie.genres">{{ genre.name }}</span></h3>
+        <h3>Genre: 
+            <span *ngFor="let genre of movie.genres, let last = last">
+                <span *ngIf="!last">
+                    {{ genre.name }},
+                </span>
+                <span *ngIf="last">
+                    {{ genre.name }}
+                </span>
+            </span>
+        </h3>
         <h3>Budget: {{ movie.budget }}$</h3>
         <h3>Revenue: {{ movie.revenue }}$</h3>
     </div>
