@@ -1,7 +1,7 @@
 <h1 *ngIf="isLoaded">{{ movie.title }}</h1>
 <div *ngIf="isLoaded" class="details-div">
     <div class="image-div">
-        <img class="details-image" src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}">
+        <img class="details-image" src="https://image.tmdb.org/t/p/original/{{ movie.poster_path }}" alt="movie-poster">
     </div>
     <div class="content-div">
         <p>"{{ movie.overview }}"</p>

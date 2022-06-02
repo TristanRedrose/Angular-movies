@@ -8,6 +8,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { PageNotFoundComponent } from './components/404_page/page_not_found';
+import { HomeComponent } from './components/home/home';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,11 +17,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieListComponent } from './components/movies/movie-list.component';
 import { MovieComponent } from './components/movies/movie.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const appRoutes: Routes = [
-  { path: 'movies', component: MovieListComponent},
-  { path: "movies/:movie_id", component: MovieComponent}, 
+  { path: '', component: HomeComponent, data: { title: "MyFavMovies"} },
+  { path: 'movies/:movie_id', component: MovieComponent},
+  { path: 'movies', component: MovieListComponent, data: { title: "MyFavMovies - Movies List"} },
+  { path: '**', component: PageNotFoundComponent, data: { title: "PageNotFound"}},
+   
 ]
 
 
@@ -31,7 +37,10 @@ const appRoutes: Routes = [
     ButtonComponent,
     LayoutComponent,
     MovieListComponent,
-    MovieComponent
+    MovieComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

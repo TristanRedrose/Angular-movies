@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -11,9 +11,10 @@ export class LayoutComponent implements OnInit {
   display: boolean = false;
   sideIsOpen:string = "closed";
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private titleService: Title, private activePage: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.changeTitle();
   }
 
   changeDisplay() {
@@ -31,5 +32,14 @@ export class LayoutComponent implements OnInit {
 
   hasRoute(route: string) {
     return this.router.url === route;
+  }
+
+  changeTitle() {
+    this.router.events.subscribe(event => {
+      switch(true) {
+        case event instanceof NavigationEnd:
+          this.titleService.setTitle(this.activePage.firstChild.snapshot.data['title']);
+      }
+    })
   }
 }

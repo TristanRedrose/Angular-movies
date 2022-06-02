@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from "../../services/movies/movies.service";
 import { Movie, MovieListResponse } from "../../models/movie.types";
-import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -16,11 +15,10 @@ export class MovieListComponent implements OnInit {
   total_pages: number;
   inputPage: number;
 
-  constructor(private service: MoviesService,private title: Title) { }
+  constructor(private service: MoviesService) { }
 
   ngOnInit(): void {
     this.getMovies(this.page);
-    this.title.setTitle("MyFavMovies");
   }
 
   getMovies(page: number) {
