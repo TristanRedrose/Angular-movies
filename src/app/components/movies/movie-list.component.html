@@ -1,4 +1,4 @@
-<div class="movies-container">
+<div *ngIf="!gotError" class="movies-container">
     <div class="page-name">
         <h1>Movies</h1>
     </div>
@@ -25,7 +25,7 @@
     <div>
         <h3 class="pagination">Page {{ page }} of {{ total_pages }}</h3>
         <div class="form-div">
-            <form (ngSubmit)="getMovies(inputPage)">
+            <form (ngSubmit)="goToPage(inputPage)">
                 <label for="page">Go to page:</label>
                 <input type="number" name="pageNum" id="page" placeholder="page-number" min="1" max="{{total_pages}}" [(ngModel)]="inputPage">
                 <app-button type="submit" color="red" text="Go"></app-button>
@@ -33,7 +33,15 @@
         </div>
     </div>
     <div class="select-box">
-        <app-button *ngIf="showButton(1)" color=blue text="<< Previous" (btnClick)="getMovies(page - 1)"></app-button>
-        <app-button *ngIf="showButton(total_pages)" color=blue text="Next >>" (btnClick)="getMovies(page + 1)"></app-button>
+        <app-button *ngIf="showButton(1)" color="blue" text="<< Previous" (btnClick)="goToPrevPage()"></app-button>
+        <app-button *ngIf="showButton(total_pages)" color="blue" text="Next >>" (btnClick)="goToNextPage()"></app-button>
     </div>
+</div>
+<div *ngIf="gotError" class="error-div">
+    <h1>Oops, something went wrong while getting the movies-list.</h1>
+    <div>
+        <app-button class="error-btn" color="blue" text="Try again" (btnClick)="refresh()"></app-button>
+        <app-button class="error-btn" color="blue" text="Return" (btnClick)="goBack()"></app-button>
+    </div>
+    
 </div>
