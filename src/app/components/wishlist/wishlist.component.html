@@ -1,0 +1,28 @@
+<div>
+    <div class="movies-container">
+        <div class="page-name">
+            <h1>My Wishlist: {{ wishlist.length }}</h1>
+        </div>
+        <div class="movie-container" *ngFor="let movie of wishlist">
+            <div class="image-box">
+                <img class="movie-image" src="https://image.tmdb.org/t/p/original/{{ movie.backdrop_path }}" alt="movie-image">
+            </div>
+            <div class="content-box">
+                <div>
+                    <h1>{{ movie.title }}</h1>
+                    <h5>{{ movie.release_date }}</h5>
+                </div>
+                <div>
+                    <h3>Language: <span>{{ movie.original_language }}</span></h3>
+                    <h3>Rating: <span>{{ movie.vote_average }}</span></h3>
+                </div> 
+            </div>
+            <div class="button-box">
+                <a routerLink="/movies/{{ movie.id }}">
+                    <app-button class="side-btn"  color="green" text="Details"></app-button>
+                </a>
+                <app-button class="side-btn" color="navy" text="Remove" (click)="removeWish(movie.id)"></app-button>
+            </div>
+        </div>
+    </div>
+</div>

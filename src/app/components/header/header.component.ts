@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Movie } from 'src/app/models/movie.types';
+import { WishlistService } from 'src/app/services/movies/wishlist.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,7 @@ export class HeaderComponent implements OnInit {
   title: string = 'MyFavMovies';
   @Output() sidebarEvent= new EventEmitter();
   
-  constructor() { }
+  constructor(private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
   }
@@ -17,4 +19,9 @@ export class HeaderComponent implements OnInit {
   toggleSidebar() {
     this.sidebarEvent.emit();
   }
+
+  get wishlist(): Movie[] {
+    return this.wishlistService.myWishlist;
+  }
+
 }

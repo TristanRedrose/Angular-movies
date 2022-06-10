@@ -31,7 +31,7 @@
 .content-box {
     display: flex;
     flex-direction: column;
-    width: 57%;
+    width: 60%;
     padding: 8px 16px;
     text-align: center;
     justify-content: space-around;
@@ -111,14 +111,4 @@ label {
 
 .side-btn {
     margin-top: 16px;
-}
-
-.color-box {
-    width: 1.5%;
-    background-color: crimson;
-}
-
-.color-box-active {
-    width: 1.5%;
-    background-color: green;
 }

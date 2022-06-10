@@ -32,3 +32,10 @@
         <h3>Revenue: {{ movie.revenue }}$</h3>
     </div>
 </div>
+<div *ngIf="gotError" class="error-div">
+    <h1>Oops, something went wrong while getting the movie.</h1>
+    <div>
+        <app-button class="error-btn" color="blue" text="Try again" (btnClick)="refresh()"></app-button>
+        <app-button class="error-btn" color="blue" text="Return" (btnClick)="goBack()"></app-button>
+    </div>
+</div>

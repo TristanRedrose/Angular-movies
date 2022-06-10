@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { WishlistService } from 'src/app/services/movies/wishlist.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,7 @@ export class SidebarComponent implements OnInit {
   @Input() display: boolean;
   @Output() sideCloseEvent = new EventEmitter();
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +22,16 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  hasRoute(route: string) {
-    return this.router.url !== route;
+  get wishlist() {
+    return this.wishlistService.myWishlist;
+  }
+
+  hasRoute(route: string): boolean {
+    return this.router.isActive( route, {
+    paths: 'exact', 
+    queryParams: 'ignored',
+    fragment: 'ignored',
+    matrixParams: 'ignored',
+    });
   }
 }

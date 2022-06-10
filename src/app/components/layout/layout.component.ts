@@ -1,6 +1,7 @@
 import { Component, OnInit, } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { WishlistService } from 'src/app/services/movies/wishlist.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,9 +10,11 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
   display: boolean = false;
-  sideIsOpen:string = "closed";
+  sideIsOpen: string = "closed";
+  myWishlistCount: number;
+  
 
-  constructor(private router:Router, private titleService: Title, private activePage: ActivatedRoute) { }
+  constructor(private router:Router, private titleService: Title, private activePage: ActivatedRoute, private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
     this.changeTitle();

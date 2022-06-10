@@ -2,11 +2,14 @@
     <header>
         <p>{{ title }}</p>
     </header>
-    <app-button 
+    <div class="side-container">
+        <h3 class="wishlist-text">Wishlist: {{ wishlist.length }}</h3>
+        <app-button 
         color="blue" 
         text="Open" 
         [ngStyle]="{ 'z-index': 2 }"
         (btnClick)="toggleSidebar()"
-    ></app-button>
+        ></app-button>
+    </div>
 </div>
 
