@@ -30,7 +30,7 @@ export class MovieListComponent implements OnInit {
     this.getPage();
   }
 
-  goToPage(page: number) {
+  goToPage(page: number): void {
     console.log(`Navigating to page ${page}`);
     if (page < 1) {
       alert('Page must be at least 1!');
@@ -48,17 +48,17 @@ export class MovieListComponent implements OnInit {
     }
   }
   
-  goToPrevPage() {
+  goToPrevPage(): void {
     this.page = this.page - 1;
     this.goToPage(this.page);
   }
 
-  goToNextPage() {
+  goToNextPage(): void {
     this.page = this.page + 1;
     this.goToPage(this.page);
   }
     
-  getMovies(page: number) {
+  getMovies(page: number): void {
     this.gotError = false;
     this.service.getMoviesList(page).subscribe(
       (res: MovieListResponse) => {
@@ -72,7 +72,7 @@ export class MovieListComponent implements OnInit {
       });
   }
 
-  getPage() {
+  getPage(): void {
     if (this.total_pages === undefined) {
       this.service.getMoviesList(1).subscribe(
         (res: MovieListResponse) => {
@@ -86,7 +86,7 @@ export class MovieListComponent implements OnInit {
     }
   }
 
-  getParam() {
+  getParam(): void {
     this.route.queryParams.subscribe(params => {
       console.log(params);
       if (params['page'] === undefined) {
@@ -106,19 +106,19 @@ export class MovieListComponent implements OnInit {
     })
   }
 
-  refresh() {
+  refresh(): void {
     window.location.reload();
   }
 
-  goBack() {
+  goBack(): void {
     this.location.back();
   }
 
-  showButton(page:number) {
+  showButton(page:number): boolean {
     return this.page !== page;
   }
 
-  async navigationInterceptor(event: RouterEvent) {
+  async navigationInterceptor(event: RouterEvent): Promise<void> {
     if (event instanceof NavigationStart || event instanceof NavigationEnd) {
       this.showLoading = true;
     }

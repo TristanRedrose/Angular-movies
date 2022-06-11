@@ -1,14 +1,17 @@
 .image-div {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 400px;
+    justify-content: center;
 }
 
 img {
-    height: 80%;
-    width: 60%;
-    object-fit: cover;
-    border-radius: 8px;
+    height: 60%;
+    width: 80%;
+    object-fit: contain;
+}
+
+a {
+    margin-top: 24px;
 }

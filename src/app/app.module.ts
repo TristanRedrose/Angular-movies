@@ -20,15 +20,20 @@ import { MovieListComponent } from './components/movies/movie-list.component';
 import { MovieComponent } from './components/movies/movie.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { LoginComponent } from './components/auth/login.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, data: { title: "MyFavMovies"} },
-  { path: 'movies/:movie_id', component: MovieComponent},
-  { path: 'movies', component: MovieListComponent, data: { title: "MyFavMovies - Movies List"} },
-  { path: 'wishlist', component: WishlistComponent, data: { title:"MyFavMovies - Wishlist"}},
-  { path: '**', component: PageNotFoundComponent, data: { title: "PageNotFound"}},
-   
+  { path: '', component: LayoutComponent,
+    children: [
+      { path: 'movies/:movie_id', component: MovieComponent},
+      { path: 'movies', component: MovieListComponent, data: { title: "MyFavMovies - Movies List" } },
+      { path: 'wishlist', component: WishlistComponent, data: { title:"MyFavMovies - Wishlist" } },
+      { path: '', component: HomeComponent, data: { title: "MyFavMovies"}},
+    ]
+  },
+  { path: 'login', component: LoginComponent, data: { title: "MyFavMovies-Login"} },
+  { path: '**', component: PageNotFoundComponent, data: { title: "PageNotFound"} },
 ]
 
 
@@ -45,6 +50,7 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     WishlistComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
