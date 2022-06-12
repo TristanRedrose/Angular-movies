@@ -21,6 +21,7 @@ import { MovieComponent } from './components/movies/movie.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { LoginComponent } from './components/auth/login.component';
+import { RegisterComponent } from './components/auth/register.component';
 
 
 const appRoutes: Routes = [
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent, data: { title: "MyFavMovies-Login"} },
+  { path: 'register', component: RegisterComponent, data: { title: "MyFavMovies-Register"} },
   { path: '**', component: PageNotFoundComponent, data: { title: "PageNotFound"} },
 ]
 
