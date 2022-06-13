@@ -53,3 +53,12 @@ input {
 .switch-link:hover {
     color: navy;
 }
+
+input.ng-invalid.ng-touched {
+    border: 1px red solid;
+}
+
+small {
+    color: red;
+    margin-top: 8px;
+}

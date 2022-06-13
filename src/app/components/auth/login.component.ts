@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
         
     }
 
-    switchForm(): void {
+    goToRegister(): void {
     this.router.navigate(["/register"]);
     }
 }

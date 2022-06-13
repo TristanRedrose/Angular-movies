@@ -14,7 +14,7 @@ import { HomeComponent } from './components/home/home';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieListComponent } from './components/movies/movie-list.component';
 import { MovieComponent } from './components/movies/movie.component';
@@ -53,6 +53,7 @@ const appRoutes: Routes = [
     FooterComponent,
     WishlistComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
