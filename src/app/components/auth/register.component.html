@@ -4,19 +4,27 @@
         <form class="login-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
             <label for="username">Username:</label>
             <input type="text" id="username" placeholder="Username..." formControlName="username">
-            <small *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched">Username field cannot be empty</small>
+            <small *ngIf="registrationForm.get('username').errors?.['required'] && registrationForm.get('username').touched">
+                Username field cannot be empty
+            </small>
             <small *ngIf="!registrationSuccess">Username already taken</small>
 
             <div class="login-form" formGroupName="passwordsInput">
                 <label for="password">Password:</label>
                 <input type="password" id="password" placeholder="Password..." formControlName="password">
-                <small *ngIf="!registrationForm.get('passwordsInput.password').valid && registrationForm.get('passwordsInput.password').touched">Password field cannot be empty</small>
+                <small *ngIf="registrationForm.get('passwordsInput.password').errors?.['required'] && 
+                    registrationForm.get('passwordsInput.password').touched || nullPassword">
+                    Password field cannot be empty
+                </small>
 
                 <label for="password">Confirm password:</label>
                 <input type="password" id="confirm" placeholder="Confirm password..." formControlName="confirm">
                 
                 <small *ngIf="!passwordMatch">Passwords must match.</small>
-                <small *ngIf="!registrationForm.get('passwordsInput.confirm').valid && registrationForm.get('passwordsInput.confirm').touched">Confirm field cannot be empty.</small>
+                <small *ngIf="registrationForm.get('passwordsInput.confirm').errors?.['required'] && 
+                    registrationForm.get('passwordsInput.confirm').touched">
+                    Confirm field cannot be empty.
+                </small>
             </div>
             
             <input class="submit-button" type="submit" value="Register">

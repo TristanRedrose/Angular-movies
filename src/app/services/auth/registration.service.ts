@@ -30,9 +30,8 @@ export class RegistrationService {
             console.log("User registered");
             return true
         }
-        else {
-            return false;
-        }
+        
+        return false;
     }
 
     userExists(user: Users): boolean {
