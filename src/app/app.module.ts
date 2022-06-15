@@ -15,29 +15,14 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { MovieListComponent } from './components/movies/movie-list.component';
 import { MovieComponent } from './components/movies/movie.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { LoginComponent } from './components/auth/login.component';
 import { RegisterComponent } from './components/auth/register.component';
-
-
-const appRoutes: Routes = [
-  { path: '', component: LayoutComponent,
-    children: [
-      { path: 'movies/:movie_id', component: MovieComponent},
-      { path: 'movies', component: MovieListComponent, data: { title: "MyFavMovies - Movies List" } },
-      { path: 'wishlist', component: WishlistComponent, data: { title:"MyFavMovies - Wishlist" } },
-      { path: '', component: HomeComponent, data: { title: "MyFavMovies"}},
-    ]
-  },
-  { path: 'login', component: LoginComponent, data: { title: "MyFavMovies-Login"} },
-  { path: 'register', component: RegisterComponent, data: { title: "MyFavMovies-Register"} },
-  { path: '**', component: PageNotFoundComponent, data: { title: "PageNotFound"} },
-]
-
+import { MoviesRouteService } from './services/auth/moviesGuard.service';
+import { AuthRouteService } from './services/auth/authGuard.service';
 
 @NgModule({
   declarations: [
@@ -63,11 +48,10 @@ const appRoutes: Routes = [
     ButtonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [MoviesRouteService, AuthRouteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

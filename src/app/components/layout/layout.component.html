@@ -1,4 +1,5 @@
 <div class="body-div">
+    <a (click)="logOut()">Log out</a>
     <app-header (sidebarEvent)="changeDisplay()"></app-header>
     <app-sidebar [display]="display" (sideCloseEvent)="changeDisplay()"></app-sidebar>
     <div class="main-content">

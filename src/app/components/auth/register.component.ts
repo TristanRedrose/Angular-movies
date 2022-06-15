@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, RequiredValidator, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Users } from "src/app/models/users.types";
+import { LoginService } from "src/app/services/auth/login.service";
 import { RegistrationService } from "src/app/services/auth/registration.service";
 
 @Component ({
@@ -18,9 +19,9 @@ export class RegisterComponent implements OnInit {
     registrationSuccess: boolean = true;
     user: Users;
 
-    constructor(private router:Router, private registrationService: RegistrationService) {
-
-    }
+    constructor(private router:Router, 
+        private registrationService: RegistrationService,
+        private loginService: LoginService) {}
 
     ngOnInit(): void {
         this.registrationForm = new FormGroup({
@@ -72,6 +73,10 @@ export class RegisterComponent implements OnInit {
                     this.registrationSuccess = true;
                     subscription.unsubscribe();
                 })
+            }
+            else {
+                this.loginService.logIn(this.user);
+                this.router.navigate(["/"]);
             }
         }
     }

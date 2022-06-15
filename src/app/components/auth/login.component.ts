@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Users } from "src/app/models/users.types";
+import { LoginService } from "src/app/services/auth/login.service";
 
 @Component({
     selector: "app-login",
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router,private loginService: LoginService) { }
 
     ngOnInit(): void {
         this.loginForm = new FormGroup({
@@ -22,10 +24,23 @@ export class LoginComponent implements OnInit {
     }
 
     goToRegister(): void {
-    this.router.navigate(["/register"]);
+        this.router.navigate(["/register"]);
     }
 
     onSubmit() {
-
+        this.loginForm.markAllAsTouched();
+        if (this.loginForm.get("username").errors === null && this.loginForm.get("password").errors === null) {
+            let user: Users = {
+                username: this.loginForm.get("username").value,
+                password: this.loginForm.get("password").value,
+            }
+            let loginSuccess: boolean = this.loginService.logIn(user);
+            if (loginSuccess === false) {
+                this.loginForm.setErrors({noUserMatch: true});
+            }
+            else {
+                this.router.navigate(["/"]);
+            }
+        }
     }
 }

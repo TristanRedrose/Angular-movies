@@ -6,7 +6,7 @@ import { Users } from "src/app/models/users.types";
 })
 
 export class RegistrationService {
-    private _key: 'registeredUsers';
+    private _key: string = 'RegisteredUsers';
     private _registeredUsers: Users[];
 
     constructor() {
@@ -24,7 +24,7 @@ export class RegistrationService {
       }
 
     registerUser(user: Users): boolean {
-        if (this.userExists(user) === false) {
+        if (this.usernameExists(user) === false) {
             this._registeredUsers.push(user);
             localStorage.setItem(this._key, JSON.stringify(this._registeredUsers));
             console.log("User registered");
@@ -35,6 +35,10 @@ export class RegistrationService {
     }
 
     userExists(user: Users): boolean {
+        return this._registeredUsers.find(item => (item.username.toUpperCase() === user.username.toUpperCase()) && (item.password === user.password)) !== undefined;
+    }
+
+    usernameExists(user: Users): boolean {
         return this._registeredUsers.find(item => item.username.toUpperCase() === user.username.toUpperCase()) !== undefined;
     }
 }

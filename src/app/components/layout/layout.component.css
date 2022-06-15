@@ -8,3 +8,15 @@
 .main-content {
     min-height: 475px;
 }
+
+a {
+    align-self: flex-end;
+    color: whitesmoke;
+    margin-top: 8px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+a:hover {
+    color: blueviolet;
+}
