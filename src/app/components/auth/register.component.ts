@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, RequiredValidator, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Users } from "src/app/models/users.types";
-import { LoginService } from "src/app/services/auth/login.service";
 import { RegistrationService } from "src/app/services/auth/registration.service";
 
 @Component ({
@@ -20,8 +19,7 @@ export class RegisterComponent implements OnInit {
     user: Users;
 
     constructor(private router:Router, 
-        private registrationService: RegistrationService,
-        private loginService: LoginService) {}
+        private registrationService: RegistrationService) {}
 
     ngOnInit(): void {
         this.registrationForm = new FormGroup({
@@ -65,19 +63,12 @@ export class RegisterComponent implements OnInit {
                 username: this.registrationForm.value.username,
                 password: this.registrationForm.value.passwordsInput.password,
             }
-            this.registrationSuccess = this.registrationService.registerUser(this.user);
-
-            if (this.registrationSuccess === false) {
-                this.registrationForm.get("username").setErrors({usernameNotUnique: true});
-                let subscription = this.registrationForm.get("username").valueChanges.subscribe(res => {
-                    this.registrationSuccess = true;
-                    subscription.unsubscribe();
-                })
-            }
-            else {
-                this.loginService.logIn(this.user);
-                this.router.navigate(["/"]);
-            }
+            this.registrationService.registerUser(this.user).subscribe(() => {
+                this.router.navigate(['/']);
+            },
+            (err) => {
+                this.registrationSuccess = false;
+            });
         }
     }
 }

@@ -1,44 +1,24 @@
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Users } from "src/app/models/users.types";
+import { ApiResponse } from "src/app/models/response.types";
+import { map, Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class RegistrationService {
-    private _key: string = 'RegisteredUsers';
-    private _registeredUsers: Users[];
+    private _key: string = 'Token';
+    private _token: string | null = null;
 
-    constructor() {
-        this.initUserList();
+    constructor(private http: HttpClient) {
     }
 
-    initUserList(): void {
-        if (JSON.parse(localStorage.getItem(this._key)) != null){
-          this._registeredUsers = JSON.parse(localStorage.getItem(this._key));
-        }
-        else {
-          this._registeredUsers = [];
-        }
-        console.log(this._registeredUsers);
-      }
-
-    registerUser(user: Users): boolean {
-        if (this.usernameExists(user) === false) {
-            this._registeredUsers.push(user);
-            localStorage.setItem(this._key, JSON.stringify(this._registeredUsers));
-            console.log("User registered");
-            return true
-        }
-        
-        return false;
-    }
-
-    userExists(user: Users): boolean {
-        return this._registeredUsers.find(item => (item.username.toUpperCase() === user.username.toUpperCase()) && (item.password === user.password)) !== undefined;
-    }
-
-    usernameExists(user: Users): boolean {
-        return this._registeredUsers.find(item => item.username.toUpperCase() === user.username.toUpperCase()) !== undefined;
+    registerUser(user: Users): Observable <void>{
+        return this.http.post<ApiResponse>("http://localhost:3000/api/register", user).pipe(map((res: ApiResponse) => {
+            this._token = res.token;
+            localStorage.setItem(this._key, this._token);
+        }));
     }
 }
