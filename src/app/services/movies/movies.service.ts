@@ -3,7 +3,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MovieListResponse, Movie } from 'src/app/models/movie.types';
 import { Observable } from 'rxjs';
-import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

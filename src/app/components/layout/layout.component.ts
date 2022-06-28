@@ -2,7 +2,6 @@ import { Component, OnInit, } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/services/auth/login.service';
-import { WishlistService } from 'src/app/services/movies/wishlist.service';
 
 @Component({
   selector: 'app-layout',
@@ -18,7 +17,6 @@ export class LayoutComponent implements OnInit {
   constructor(private router:Router, 
     private titleService: Title, 
     private activePage: ActivatedRoute, 
-    private wishlistService: WishlistService,
     private loginService: LoginService) { }
 
   ngOnInit(): void {
@@ -36,10 +34,6 @@ export class LayoutComponent implements OnInit {
       this.sideIsOpen= "closed";
       console.log(this.sideIsOpen);
     }
-  }
-
-  hasRoute(route: string) {
-    return this.router.url === route;
   }
 
   changeTitle() {

@@ -34,13 +34,9 @@ export class LoginComponent implements OnInit {
                 username: this.loginForm.get("username").value,
                 password: this.loginForm.get("password").value,
             }
-            let loginSuccess: boolean = this.loginService.logIn(user);
-            if (loginSuccess === false) {
-                this.loginForm.setErrors({noUserMatch: true});
-            }
-            else {
-                this.router.navigate(["/"]);
-            }
+            this.loginService.logIn(user).subscribe(() => {
+                this.router.navigate(['/']);
+            });
         }
     }
 }
