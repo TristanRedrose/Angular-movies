@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, RequiredValidator, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -14,8 +15,7 @@ export class RegisterComponent implements OnInit {
 
     registrationForm: FormGroup;
     passwordMatch: boolean = true;
-    nullPassword: boolean = false;
-    registrationSuccess: boolean = true;
+    errorMessage: null | string = null;
     user: Users;
 
     constructor(private router:Router, 
@@ -38,37 +38,34 @@ export class RegisterComponent implements OnInit {
     onSubmit(): void {
         console.log(this.registrationForm)
         this.registrationForm.markAllAsTouched();
-        if (this.registrationForm.value.passwordsInput.password === null) {
-            this.nullPassword = true;
-            let subscription = this.registrationForm.get("passwordsInput.password").valueChanges.subscribe(res => {
-                this.nullPassword = false;
-                subscription.unsubscribe();
-            })
+        if (this.registrationForm.get('passwordsInput.password').errors !== null 
+            || this.registrationForm.get('username').errors !== null) {
+                return;
         }
-        else if (this.registrationForm.value.passwordsInput.password !==
+
+        if (this.registrationForm.value.passwordsInput.password !==
             this.registrationForm.value.passwordsInput.confirm) {
                 this.passwordMatch = false;
-                this.registrationForm.get("passwordsInput.password").setErrors({passwordsDontMatch: true});
-                this.registrationForm.get("passwordsInput.confirm").setErrors({passwordsDontMatch: true});
-                let subscription = this.registrationForm.get("passwordsInput").valueChanges.subscribe(res => {
+                let subscription = this.registrationForm.get('passwordsInput').valueChanges.subscribe(() => {
                     this.passwordMatch = true;
-                    this.registrationForm.get("passwordsInput.password").setErrors(null);
-                this.registrationForm.get("passwordsInput.confirm").setErrors(null);
-                    subscription.unsubscribe();
-                })
+                    subscription.unsubscribe;
+                });
+                return;
         }
-        else {
-            this.passwordMatch = true;
-            this.user = {
-                username: this.registrationForm.value.username,
-                password: this.registrationForm.value.passwordsInput.password,
-            }
-            this.registrationService.registerUser(this.user).subscribe(() => {
-                this.router.navigate(['/']);
-            },
-            (err) => {
-                this.registrationSuccess = false;
-            });
+        
+        this.user = {
+            username: this.registrationForm.value.username,
+            password: this.registrationForm.value.passwordsInput.password,
         }
+        this.registrationService.registerUser(this.user).subscribe(() => {
+            this.router.navigate(['/']);
+        },
+        (err: HttpErrorResponse) => {
+            this.errorMessage = err.error.message;
+            let subscription = this.registrationForm.get('username').valueChanges.subscribe(() => {
+                this.errorMessage = null;
+                subscription.unsubscribe;
+            })
+        });
     }
 }

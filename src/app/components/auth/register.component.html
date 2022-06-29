@@ -7,13 +7,13 @@
             <small *ngIf="registrationForm.get('username').errors?.['required'] && registrationForm.get('username').touched">
                 Username field cannot be empty
             </small>
-            <small *ngIf="!registrationSuccess">Username already taken</small>
+            <small *ngIf="errorMessage">{{ errorMessage }}</small>
 
             <div class="login-form" formGroupName="passwordsInput">
                 <label for="password">Password:</label>
                 <input type="password" id="password" placeholder="Password..." formControlName="password">
                 <small *ngIf="registrationForm.get('passwordsInput.password').errors?.['required'] && 
-                    registrationForm.get('passwordsInput.password').touched || nullPassword">
+                    registrationForm.get('passwordsInput.password').touched">
                     Password field cannot be empty
                 </small>
 

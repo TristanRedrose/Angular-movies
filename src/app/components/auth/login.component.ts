@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -13,6 +14,7 @@ import { LoginService } from "src/app/services/auth/login.service";
 export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
+    errorMessage: null | string = null
 
     constructor(private router: Router,private loginService: LoginService) { }
 
@@ -36,6 +38,13 @@ export class LoginComponent implements OnInit {
             }
             this.loginService.logIn(user).subscribe(() => {
                 this.router.navigate(['/']);
+            },
+            (err: HttpErrorResponse) => {
+                this.errorMessage = err.error.message;
+                let subscription = this.loginForm.valueChanges.subscribe(() => {
+                    this.errorMessage = null;
+                    subscription.unsubscribe;
+                })
             });
         }
     }

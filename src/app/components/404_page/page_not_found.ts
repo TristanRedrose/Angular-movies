@@ -10,10 +10,9 @@ import { Location } from '@angular/common';
 export class PageNotFoundComponent implements OnInit {
     constructor(private _location: Location) {}
   
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
-    linkClick() {
+    linkClick(): void {
         this._location.back();
     }
   }
