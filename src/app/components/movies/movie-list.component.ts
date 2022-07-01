@@ -132,15 +132,19 @@ export class MovieListComponent implements OnInit {
     }
   }
 
-  addWish(movie: Movie): void {
-    this.wishlistService.addWish(movie);
+  addWish(movie_id: number): void {
+    this.wishlistService.addWish(movie_id).subscribe(res => {
+      console.log(res.message);
+    });
   }
 
-  removeWish(id: number): void {
-    this.wishlistService.removeWish(id);
+  removeWish(movie_id: number): void {
+    this.wishlistService.removeWish(movie_id).subscribe(res => {
+      console.log(res.message);
+    });
   }
 
-  isWishlisted(movie: Movie): boolean {
-    return this.wishlistService.isWishlisted(movie);
+  isWishlisted(movie_id: number): boolean {
+    return this.wishlistService.isWishlisted(movie_id);
   }
 }

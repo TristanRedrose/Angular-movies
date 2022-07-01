@@ -7,7 +7,7 @@
             <h1>Movies</h1>
         </div>
         <div class="movie-container" *ngFor="let movie of movies">
-            <div [ngClass]=" isWishlisted(movie) ? 'color-box-active' : 'color-box' ">
+            <div [ngClass]=" isWishlisted(movie.id) ? 'color-box-active' : 'color-box' ">
             </div>
             <div class="image-box">
                 <img class="movie-image" src="https://image.tmdb.org/t/p/original/{{ movie.backdrop_path }}" alt="movie-image">
@@ -26,10 +26,10 @@
                 <a routerLink="/movies/{{ movie.id }}">
                     <app-button class="side-btn"  color="green" text="Details"></app-button>
                 </a>
-                    <app-button class="side-btn"  *ngIf="!isWishlisted(movie)"color="navy" text="Wishlist" (btnClick)="addWish(movie)"></app-button>
-                    <app-button class="side-btn" *ngIf="isWishlisted(movie)" color="navy" text="Remove" (btnClick)="removeWish(movie.id)"></app-button>
+                    <app-button class="side-btn"  *ngIf="!isWishlisted(movie.id)"color="navy" text="Wishlist" (btnClick)="addWish(movie.id)"></app-button>
+                    <app-button class="side-btn" *ngIf="isWishlisted(movie.id)" color="navy" text="Remove" (btnClick)="removeWish(movie.id)"></app-button>
             </div>
-            <div [ngClass]=" isWishlisted(movie) ? 'color-box-active' : 'color-box' ">
+            <div [ngClass]=" isWishlisted(movie.id) ? 'color-box-active' : 'color-box' ">
             </div>
         </div>
         <div>

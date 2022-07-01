@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Users } from "src/app/models/users.types";
-import { RegistrationService } from "./registration.service";
 import { HttpClient } from "@angular/common/http";
 import { ApiResponse } from "src/app/models/response.types";
 import { map,Observable } from "rxjs";
@@ -14,12 +13,10 @@ export class LoginService {
     private _token: string | null = null;
     private _key: string = 'Token';
     
-    constructor(private registrationService: RegistrationService, private http: HttpClient) {
-
-    }
+    constructor( private http: HttpClient ) {}
 
     logIn(user: Users): Observable <void>  {
-        return this.http.post<ApiResponse>("http://localhost:3000/api/login", user).pipe(map((res: ApiResponse) => {
+        return this.http.post<ApiResponse>("http://localhost:3000/api/auth/login", user).pipe(map((res: ApiResponse) => {
             this._token = res.token;
             localStorage.setItem(this._key, this._token);
         }));
