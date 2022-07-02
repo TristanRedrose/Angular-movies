@@ -135,12 +135,14 @@ export class MovieListComponent implements OnInit {
   addWish(movie_id: number): void {
     this.wishlistService.addWish(movie_id).subscribe(res => {
       console.log(res.message);
+      this.wishlistService.addMovieWish(movie_id);
     });
   }
 
   removeWish(movie_id: number): void {
     this.wishlistService.removeWish(movie_id).subscribe(res => {
       console.log(res.message);
+      this.wishlistService.removeMovieWish(movie_id);
     });
   }
 

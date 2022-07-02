@@ -22,6 +22,7 @@ export class WishlistComponent implements OnInit {
   removeWish(movie_id: number): void {
     this.wishlistService.removeWish(movie_id).subscribe(res => {
       console.log(res.message);
+      this.wishlistService.removeMovieWish(movie_id);
     });
   }
 }
