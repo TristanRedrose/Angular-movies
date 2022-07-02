@@ -66,6 +66,11 @@ export class MovieListComponent implements OnInit {
         this.total_pages = res.total_pages;
         console.log(res);
         window.scroll(0,0);
+        this.movies.forEach(movie => {
+          if (this.isWishlisted(movie.id)) {
+            movie.isWishlisted = true
+          }
+        });
         },
       (error) => {
         this.gotError = true;
@@ -132,17 +137,17 @@ export class MovieListComponent implements OnInit {
     }
   }
 
-  addWish(movie_id: number): void {
-    this.wishlistService.addWish(movie_id).subscribe(res => {
+  addWish(movie: Movie): void {
+    this.wishlistService.addWish(movie).subscribe(res => {
       console.log(res.message);
-      this.wishlistService.addMovieWish(movie_id);
+      this.wishlistService.addMovieWish(movie);
     });
   }
 
-  removeWish(movie_id: number): void {
-    this.wishlistService.removeWish(movie_id).subscribe(res => {
+  removeWish(movie: Movie): void {
+    this.wishlistService.removeWish(movie).subscribe(res => {
       console.log(res.message);
-      this.wishlistService.removeMovieWish(movie_id);
+      this.wishlistService.removeMovieWish(movie);
     });
   }
 

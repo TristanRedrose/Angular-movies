@@ -23,6 +23,7 @@ export type Movie = {
     genres: Genres[];
     revenue: number;
     production_companies: Companies[];
+    isWishlisted?: boolean;
 }
 
 export type  MovieListResponse = {
