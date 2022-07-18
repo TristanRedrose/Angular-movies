@@ -3,6 +3,7 @@ import { Users } from "src/app/models/users.types";
 import { HttpClient } from "@angular/common/http";
 import { ApiResponse } from "src/app/models/response.types";
 import { map,Observable } from "rxjs";
+import { WishlistService } from "../movies/wishlist.service";
 
 @Injectable ({
     providedIn: 'root'
@@ -12,13 +13,16 @@ export class LoginService {
 
     private _token: string | null = null;
     private _key: string = 'Token';
+    private _username:string;
     
-    constructor( private http: HttpClient ) {}
+    constructor( private http: HttpClient, private wishlistService: WishlistService) {}
 
     logIn(user: Users): Observable <void>  {
         return this.http.post<ApiResponse>("http://localhost:3000/api/auth/login", user).pipe(map((res: ApiResponse) => {
             this._token = res.token;
             localStorage.setItem(this._key, this._token);
+            this.wishlistService.initWishlist();
+            this._username = user.username;
         }));
     };
 
