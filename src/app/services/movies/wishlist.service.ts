@@ -16,9 +16,6 @@ export class WishlistService {
     private _myWishlist: Movie[];
 
     constructor(private http: HttpClient, private moviesService: MoviesService) {
-      if (!this._myWishlist) {
-        this.initWishlist();
-      }
     }
 
     addWish(movie: Movie): Observable <ApiResponse> {

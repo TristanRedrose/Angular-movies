@@ -13,16 +13,13 @@ export class LoginService {
 
     private _token: string | null = null;
     private _key: string = 'Token';
-    private _username:string;
     
-    constructor( private http: HttpClient, private wishlistService: WishlistService) {}
+    constructor( private http: HttpClient) {}
 
     logIn(user: Users): Observable <void>  {
         return this.http.post<ApiResponse>("http://localhost:3000/api/auth/login", user).pipe(map((res: ApiResponse) => {
             this._token = res.token;
             localStorage.setItem(this._key, this._token);
-            this.wishlistService.initWishlist();
-            this._username = user.username;
         }));
     };
 
@@ -36,5 +33,4 @@ export class LoginService {
         this._token = localStorage.getItem(this._key);
         return this._token !== 'null';
     };
-
 }

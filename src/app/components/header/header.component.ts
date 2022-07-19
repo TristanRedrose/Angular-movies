@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
+    this.wishlistService.initWishlist();
   }
 
   toggleSidebar() {
