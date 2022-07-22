@@ -57,7 +57,7 @@ export class WishlistService {
     initWishlist(): void {
       console.log("initialising wishlist");
       this._myWishlist = [];
-      let wishlist: WishlistResponse[] =[];
+      let wishlist: WishlistResponse[] = [];
       this.returnWishlist().subscribe(res => {
         if (res === null) {
           return;

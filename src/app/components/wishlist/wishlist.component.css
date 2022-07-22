@@ -31,14 +31,14 @@
 .content-box {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 50%;
     padding: 8px 16px;
     text-align: center;
     justify-content: space-around;
 }
 
 .button-box {
-    width: 10%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,12 +52,8 @@
    object-fit: cover;
 }
 
-h3 {
+h4,h3 {
     margin: 8px 0px;
-}
-
-span {
-    font-size: 16px;
 }
 
 .select-box {
@@ -111,4 +107,22 @@ label {
 
 .side-btn {
     margin-top: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+    .movies-container {
+        width: 90%;
+    }
+
+    .movie-container {
+        height: 135px;
+    }
+
+    .button-box {
+        width: 25%;
+    }
+
+    .image-box {
+        width: 25%;
+    }
 }

@@ -20,6 +20,7 @@ export class LoginService {
         return this.http.post<ApiResponse>("http://localhost:3000/api/auth/login", user).pipe(map((res: ApiResponse) => {
             this._token = res.token;
             localStorage.setItem(this._key, this._token);
+            localStorage.setItem("username", user.username);
         }));
     };
 

@@ -6,17 +6,25 @@
 }
 
 .main-content {
-    min-height: 475px;
+    height: fit-content;
+    min-height: 300px;
+}
+
+.user-div {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    color: whitesmoke;
 }
 
 a {
-    align-self: flex-end;
-    color: whitesmoke;
-    margin-top: 8px;
-    margin-right: 16px;
+    margin: 0px 16px;
     cursor: pointer;
 }
 
 a:hover {
     color: blueviolet;
 }
+

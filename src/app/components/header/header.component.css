@@ -1,9 +1,10 @@
 .container {
     position: relative;
+    box-sizing: border-box;
     margin: 30px auto;
     padding: 48px;
     max-width: 90%;
-    max-height: 300px;
+    min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,18 +16,18 @@
 
 .container::before {
     content: "";
-    height: 139px;
+    height: 100%;
     width: 100%;
     opacity: 0.3;
     position: absolute;
-    left: 0px;
+    left: 0;
+    top: 0;
     background-color: black;
     background-size: cover;
     z-index: 1;
 }
 
 header {
-    font-size: 32px;
     color: white;
     font-weight: 600;
     z-index: 2;
@@ -41,4 +42,16 @@ header {
 .wishlist-text {
     color: whitesmoke;
     margin-right: 16px;
+}
+
+@media only screen and (max-width: 750px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 24px;
+    }
 }

@@ -12,7 +12,7 @@ export class LayoutComponent implements OnInit {
   display: boolean = false;
   sideIsOpen: string = "closed";
   myWishlistCount: number;
-  
+  username: string;
 
   constructor(private router:Router, 
     private titleService: Title, 
@@ -21,6 +21,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.changeTitle();
+    this.setUsername();
   }
 
   changeDisplay() {
@@ -48,5 +49,9 @@ export class LayoutComponent implements OnInit {
   logOut():void {
     this.loginService.logOut();
     this.router.navigate(["/login"])
+  }
+
+  setUsername():void {
+    this.username = localStorage.getItem('username')
   }
 }
